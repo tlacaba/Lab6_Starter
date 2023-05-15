@@ -78,27 +78,30 @@ function initFormHandler() {
   recipeForm.addEventListener('submit', (event) => {
     const formData = new FormData(event.target);
 
-    const newRecipe = {
+    const newRecipeData = {
       imgSrc: formData.get('imgSrc'),
       imgAlt: formData.get('imgAlt'),
-      titleTxt: formData.get('titleTxt'),
       titleLnk: formData.get('titleLnk'),
+      titleTxt: formData.get('titleTxt'),
+      organization: formData.get('organization'),
       rating: formData.get('rating'),
       numRatings: formData.get('numRatings'),
-      organization: formData.get('organization'),
       lengthTime: formData.get('lengthTime'),
       ingredients: formData.get('ingredients')
     };
-
-    addRecipesToDocument([newRecipe]);
-    saveRecipesToStorage(getRecipesFromStorage().concat(newRecipe));
+    let newRecipeCard = document.createElement('recipe-card');
+    newRecipeCard.data = newRecipeData;
+    let mainEl = document.querySelector('main');
+    mainEl.appendChild(newRecipeCard);
+    saveRecipesToStorage(getRecipesFromStorage().concat(newRecipeCard));
   });
 
   const clearButton = recipeForm.querySelector('button.danger');
 
   clearButton.addEventListener('click', (event) => {
     localStorage.clear();
-    document.querySelector('main').clear();
+    let mainEl = document.querySelector('main');
+    mainEl.clear();
   });
   // Steps B4-B9 will occur inside the event listener from step B3
   // B4. TODO - Create a new FormData object from the <form> element reference above
