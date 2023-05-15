@@ -102,7 +102,9 @@ function initFormHandler() {
   clearButton.addEventListener('click', (event) => {
     localStorage.clear();
     let mainEl = document.querySelector('main');
-    mainEl.clear();
+    while(mainEl.firstChild) {
+      mainEl.removeChild(mainEl.firstChild);
+    }
   });
   // Steps B4-B9 will occur inside the event listener from step B3
   // B4. TODO - Create a new FormData object from the <form> element reference above
