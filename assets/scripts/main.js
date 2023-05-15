@@ -94,12 +94,13 @@ function initFormHandler() {
       ingredients: formData.get('ingredients')
     };
     addRecipesToDocument([newRecipeData]);
-    saveRecipesToStorage(getRecipesFromStorage().concat(newRecipeCard));
+    saveRecipesToStorage(getRecipesFromStorage().concat(newRecipeData));
   });
 
   const clearButton = recipeForm.querySelector('button.danger');
 
   clearButton.addEventListener('click', (event) => {
+    console.log("Cleared local storage.");
     localStorage.clear();
     let mainEl = document.querySelector('main');
     while(mainEl.firstChild) {
