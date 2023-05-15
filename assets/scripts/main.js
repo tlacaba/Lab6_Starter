@@ -93,10 +93,7 @@ function initFormHandler() {
       lengthTime: formData.get('lengthTime'),
       ingredients: formData.get('ingredients')
     };
-    let newRecipeCard = document.createElement('recipe-card');
-    newRecipeCard.data = newRecipeData;
-    let mainEl = document.querySelector('main');
-    mainEl.appendChild(newRecipeCard);
+    addRecipesToDocument([newRecipeData]);
     saveRecipesToStorage(getRecipesFromStorage().concat(newRecipeCard));
   });
 
